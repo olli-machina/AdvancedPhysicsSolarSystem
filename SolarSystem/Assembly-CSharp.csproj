@@ -57,9 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Felix\SunManager.cs" />
-    <Compile Include="Assets\Scripts\Felix\OrbitReference.cs" />
-    <Compile Include="Assets\Scripts\Felix\OrbitControl.cs" />
     <Compile Include="Assets\Scripts\Charlie\Orbit.cs" />
+    <Compile Include="Assets\Scripts\Felix\OrbitReference.cs" />
+    <Compile Include="Assets\Scripts\Olli\OrbitTest.cs" />
+    <Compile Include="Assets\Scripts\Olli\Planet.cs" />
+    <Compile Include="Assets\Scripts\Felix\OrbitControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
