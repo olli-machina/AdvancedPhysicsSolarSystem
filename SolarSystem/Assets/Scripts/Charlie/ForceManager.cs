@@ -38,22 +38,15 @@ public class ForceManager : MonoBehaviour
       addForceGenerator(pointForceGenerator);
       return newForceGenerator.GetComponent<ForceGenerator2D>();
    }
-
-   public ForceGenerator2D NewBouyancyForceGenerator(GameObject obj, float maxDepth, float volume, float waterHeight, float density)
-   {
-      BuoyancyForceGenerator newBouyancyGen = obj.AddComponent<BuoyancyForceGenerator>();
-      newBouyancyGen.Constructor(maxDepth, volume, waterHeight, density);
-      addForceGenerator(newBouyancyGen);
-      return obj.GetComponent<ForceGenerator2D>();
-   }
-
-   public ForceGenerator2D NewSpringForceGenerator(GameObject obj1, GameObject obj2, float springConst, float restLength)
-   {
-      SpringForceGenerator springForceGenerator = obj1.AddComponent<SpringForceGenerator>();
-      springForceGenerator.Constructor(obj1, obj2, springConst, restLength);
-      addForceGenerator(springForceGenerator);
-      return obj1.GetComponent<ForceGenerator2D>();
-   }
+    
+   // public ForceGenerator2D NewGravityForceGenerator(double sunMass, double planetMass, float magnitude)
+   //{
+   //   GameObject newForceGenerator = new GameObject("PointForceGenerator");
+   //   PointForceGenerator pointForceGenerator = newForceGenerator.AddComponent<PointForceGenerator>();
+   //   pointForceGenerator.Constructor(point, magnitude);
+   //   addForceGenerator(pointForceGenerator);
+   //   return newForceGenerator.GetComponent<ForceGenerator2D>();
+   //}
 
    public void addForceGenerator(ForceGenerator2D forceGeneratorToAdd)
    {

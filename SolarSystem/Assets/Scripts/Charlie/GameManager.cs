@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
    public ParticleManager Pmanager;
    public Particle2DLink mLink;
    public Particle2DContact pContact;
+    public GameObject planetPrefab, sunPrefab;
    //public bool isTarget = false, isAlive = true;
    //public Text scoreText;
    //int score;
@@ -57,49 +58,71 @@ public class GameManager : MonoBehaviour
       //}
    }
 
-   //void CreateTarget(Vector3 pos)
-   //{
-   //   GameObject newTarget = Instantiate(target);
-   //   newTarget.transform.position = pos;
-   //   Debug.Log(Pmanager);
-   //   Pmanager.addParticle2D(newTarget);
-   //   newTarget.GetComponent<TargetBehavior>().SetVariables(newTarget);
-   //   ForceGenerator2D bouyancyForce = Fmanager.NewBouyancyForceGenerator(newTarget, -(waterSprite.transform.localScale.y) / 2, 75.0f, (waterSprite.transform.localScale.y) / 2, 5.0f);
-   //   Fmanager.addForceGenerator(bouyancyForce);
-   //   newTarget.GetComponent<TargetBehavior>().forceGen = bouyancyForce;
-   //   isTarget = true;
-   //}
+    void CreatePlanet(Vector3 pos)
+    {
+        GameObject newPlanet = Instantiate(planetPrefab);
+        newPlanet.transform.position = pos;
+        Debug.Log(Pmanager);
+        Pmanager.addParticle2D(newPlanet);
+        //ForceGenerator2D bouyancyForce = Fmanager.NewBouyancyForceGenerator(newTarget, -(waterSprite.transform.localScale.y) / 2, 75.0f, (waterSprite.transform.localScale.y) / 2, 5.0f);
+        //Fmanager.addForceGenerator(bouyancyForce);
+        //newTarget.GetComponent<TargetBehavior>().forceGen = bouyancyForce;
+        //isTarget = true;
+    }
 
-   //void SpringProjectile()
-   //{
-   //   GameObject newBullet1 = Instantiate(springPrefab);
-   //   GameObject newBullet2 = Instantiate(springPrefab);
-   //   newBullet1.GetComponent<BulletBehavior>().SetVariables(newBullet1, gun);
-   //   newBullet2.GetComponent<BulletBehavior>().SetVariables(newBullet2, gun);
-   //   newBullet1.transform.position = gun.transform.position;
-   //   newBullet2.transform.position = gun.transform.position;
+    void CreateCenterPlanet(Vector3 pos)
+    {
+        GameObject newSun = Instantiate(sunPrefab);
+        newSun.transform.position = pos;
+        Pmanager.addParticle2D(newSun);
+        ForceGenerator2D gravityForce;
+        
+    }
 
-   //   newBullet1.GetComponent<BulletBehavior>().isForceGen = true;
 
-   //   ForceGenerator2D springForce = Fmanager.NewSpringForceGenerator(newBullet1, newBullet2, 1.0f, 10.0f);
-   //   Fmanager.addForceGenerator(springForce);
+    //void CreateTarget(Vector3 pos)
+    //{
+    //   GameObject newTarget = Instantiate(target);
+    //   newTarget.transform.position = pos;
+    //   Debug.Log(Pmanager);
+    //   Pmanager.addParticle2D(newTarget);
+    //   newTarget.GetComponent<TargetBehavior>().SetVariables(newTarget);
+    //   ForceGenerator2D bouyancyForce = Fmanager.NewBouyancyForceGenerator(newTarget, -(waterSprite.transform.localScale.y) / 2, 75.0f, (waterSprite.transform.localScale.y) / 2, 5.0f);
+    //   Fmanager.addForceGenerator(bouyancyForce);
+    //   newTarget.GetComponent<TargetBehavior>().forceGen = bouyancyForce;
+    //   isTarget = true;
+    //}
 
-   //   newBullet1.GetComponent<BulletBehavior>().forceGen = springForce;
-   //}
+    //void SpringProjectile()
+    //{
+    //   GameObject newBullet1 = Instantiate(springPrefab);
+    //   GameObject newBullet2 = Instantiate(springPrefab);
+    //   newBullet1.GetComponent<BulletBehavior>().SetVariables(newBullet1, gun);
+    //   newBullet2.GetComponent<BulletBehavior>().SetVariables(newBullet2, gun);
+    //   newBullet1.transform.position = gun.transform.position;
+    //   newBullet2.transform.position = gun.transform.position;
 
-   //void RodProjectile()
-   //{
-   //   GameObject newBullet1 = Instantiate(rodPrefab);
-   //   GameObject newBullet2 = Instantiate(rodPrefab);
-   //   newBullet1.GetComponent<BulletBehavior>().SetVariables(newBullet1, gun);
-   //   newBullet2.GetComponent<BulletBehavior>().SetVariables(newBullet2, gun);
-   //   newBullet1.transform.position = new Vector3(gun.transform.position.x, gun.transform.position.y + 10.0f, 0.0f);
-   //   newBullet2.transform.position = gun.transform.position;
+    //   newBullet1.GetComponent<BulletBehavior>().isForceGen = true;
 
-   //   newBullet1.GetComponent<BulletBehavior>().isParticleLink = true;
+    //   ForceGenerator2D springForce = Fmanager.NewSpringForceGenerator(newBullet1, newBullet2, 1.0f, 10.0f);
+    //   Fmanager.addForceGenerator(springForce);
 
-   //   Particle2DLink pLink = mLink.NewLink(newBullet1, newBullet2, 10.0f);
-   //   //pContact.resolveContacts(mLink., Time.deltaTime);
-   //   newBullet1.GetComponent<BulletBehavior>().particleLink = pLink;
-   //}
+    //   newBullet1.GetComponent<BulletBehavior>().forceGen = springForce;
+    //}
+
+    //void RodProjectile()
+    //{
+    //   GameObject newBullet1 = Instantiate(rodPrefab);
+    //   GameObject newBullet2 = Instantiate(rodPrefab);
+    //   newBullet1.GetComponent<BulletBehavior>().SetVariables(newBullet1, gun);
+    //   newBullet2.GetComponent<BulletBehavior>().SetVariables(newBullet2, gun);
+    //   newBullet1.transform.position = new Vector3(gun.transform.position.x, gun.transform.position.y + 10.0f, 0.0f);
+    //   newBullet2.transform.position = gun.transform.position;
+
+    //   newBullet1.GetComponent<BulletBehavior>().isParticleLink = true;
+
+    //   Particle2DLink pLink = mLink.NewLink(newBullet1, newBullet2, 10.0f);
+    //   //pContact.resolveContacts(mLink., Time.deltaTime);
+    //   newBullet1.GetComponent<BulletBehavior>().particleLink = pLink;
+    //}
 }

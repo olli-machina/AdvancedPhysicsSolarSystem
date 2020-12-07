@@ -5,7 +5,7 @@ using UnityEngine;
 public class OrbitTest : MonoBehaviour
 {
     Planet currentOrbit;
-    public Planet sun;
+    public double sunMass;
 
     // Start is called before the first frame update
     void Start()
@@ -23,18 +23,18 @@ public class OrbitTest : MonoBehaviour
     {
         double distanceAcc = calculateDistanceAcc(currentOrbit);
         currentOrbit.distSpeed = newValue(currentOrbit.distSpeed, distanceAcc);
-        currentOrbit.distance = newValue(currentOrbit.distance, currentOrbit.distSpeed);
+        currentOrbit.distanceVal = newValue(currentOrbit.distanceVal, currentOrbit.distSpeed);
 
         double angleAcc = calculateAngleAcc(currentOrbit);
         currentOrbit.angleSpeed = newValue(currentOrbit.angleSpeed, angleAcc);
-        currentOrbit.angle = newValue(currentOrbit.angle, currentOrbit.angleSpeed);
+        currentOrbit.angleVal = newValue(currentOrbit.angleVal, currentOrbit.angleSpeed);
     }
 
     public double calculateDistanceAcc(Planet calcPlanet) //forces between due to gravity
     {
-        double distance = calcPlanet.distance;
+        double distance = calcPlanet.distanceVal;
         double angleSpeed = calcPlanet.angleSpeed;
-        double gravity = calcPlanet.gravitationalConstant * sun.mass;
+        double gravity = calcPlanet.gravitationalConstant * sunMass;
 
         double acc = distance * Mathf.Pow((float)angleSpeed, 2) - gravity / Mathf.Pow((float)distance, 2);
 
@@ -43,7 +43,7 @@ public class OrbitTest : MonoBehaviour
 
     public double calculateAngleAcc(Planet calcPlanet)
     {
-        return (-2.0 * calcPlanet.distSpeed * calcPlanet.angleSpeed / calcPlanet.distance);
+        return (-2.0 * calcPlanet.distSpeed * calcPlanet.angleSpeed / calcPlanet.distanceVal);
     }
 
     public double newValue(double current, double derivative)
