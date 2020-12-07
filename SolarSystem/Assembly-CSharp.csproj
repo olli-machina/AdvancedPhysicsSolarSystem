@@ -62,6 +62,14 @@
     <Compile Include="Assets\Scripts\Olli\OrbitTest.cs" />
     <Compile Include="Assets\Scripts\Olli\Planet.cs" />
     <Compile Include="Assets\Scripts\Felix\OrbitControl.cs" />
+    <Compile Include="Assets\Scripts\Charlie\ForceGenerator2D.cs" />
+    <Compile Include="Assets\Scripts\Charlie\ForceManager.cs" />
+    <Compile Include="Assets\Scripts\Charlie\Integrator.cs" />
+    <Compile Include="Assets\Scripts\Charlie\Particle2D.cs" />
+    <Compile Include="Assets\Scripts\Charlie\Particle2DContact.cs" />
+    <Compile Include="Assets\Scripts\Charlie\Particle2DLink.cs" />
+    <Compile Include="Assets\Scripts\Charlie\ParticleManager.cs" />
+    <Compile Include="Assets\Scripts\Charlie\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
