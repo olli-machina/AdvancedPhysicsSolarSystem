@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Charlie\Integrator.cs" />
     <Compile Include="Assets\Scripts\Charlie\Particle2DContact.cs" />
     <Compile Include="Assets\Scripts\Felix\OrbitControl.cs" />
+    <Compile Include="Assets\Scripts\Olli\CenterPlanet.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
