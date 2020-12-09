@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
    public ParticleManager Pmanager;
    public Particle2DLink mLink;
    public Particle2DContact pContact;
-    public GameObject planetPrefab, sunPrefab;
+   public GameObject planetPrefab, sunPrefab;
+
+    public int planetCountOnScreen = 0, planetDesired = 1;
    //public bool isTarget = false, isAlive = true;
    //public Text scoreText;
    //int score;
@@ -27,35 +29,41 @@ public class GameManager : MonoBehaviour
    // Update is called once per frame
    void Update()
    {
-      //if (Input.GetKeyDown(KeyCode.Return))
-      //{
-      //   if (gun.GetComponent<GunBehaviors>().currentNum == 0) //regular projectile
-      //   {
-      //      GameObject newBullet = Instantiate(bulletPrefab);
-      //      Pmanager.addParticle2D(newBullet);
-      //      newBullet.GetComponent<BulletBehavior>().SetVariables(newBullet, gun);
-      //      newBullet.transform.position = gun.transform.position;
-      //      newBullet.transform.rotation = gun.transform.rotation;
-      //   }
-      //   else if (gun.GetComponent<GunBehaviors>().currentNum == 1) //spring projectile
-      //   {
-      //      SpringProjectile();
-      //   }
-      //   else if (gun.GetComponent<GunBehaviors>().currentNum == 2) //rod projectile
-      //   {
-      //      GameObject newParticleLink = new GameObject("ParticleLink");
-      //      Particle2DLink tempParticleLink = newParticleLink.AddComponent<Particle2DLink>();
-      //      mLink = tempParticleLink;
-      //      RodProjectile();
-      //   }
-      //}
+        //if (Input.GetKeyDown(KeyCode.Return))
+        //{
+        //   if (gun.GetComponent<GunBehaviors>().currentNum == 0) //regular projectile
+        //   {
+        //      GameObject newBullet = Instantiate(bulletPrefab);
+        //      Pmanager.addParticle2D(newBullet);
+        //      newBullet.GetComponent<BulletBehavior>().SetVariables(newBullet, gun);
+        //      newBullet.transform.position = gun.transform.position;
+        //      newBullet.transform.rotation = gun.transform.rotation;
+        //   }
+        //   else if (gun.GetComponent<GunBehaviors>().currentNum == 1) //spring projectile
+        //   {
+        //      SpringProjectile();
+        //   }
+        //   else if (gun.GetComponent<GunBehaviors>().currentNum == 2) //rod projectile
+        //   {
+        //      GameObject newParticleLink = new GameObject("ParticleLink");
+        //      Particle2DLink tempParticleLink = newParticleLink.AddComponent<Particle2DLink>();
+        //      mLink = tempParticleLink;
+        //      RodProjectile();
+        //   }
+        //}
 
-      //if (!isTarget)
-      //{
-      //   CreateTarget(new Vector3(Random.Range(-110, 110), Random.Range(-60, 60), 0.0f));
-      //   score++;
-      //   scoreText.text = score.ToString();
-      //}
+        //if (!isTarget)
+        //{
+        //   CreateTarget(new Vector3(Random.Range(-110, 110), Random.Range(-60, 60), 0.0f));
+        //   score++;
+        //   scoreText.text = score.ToString();
+        //}
+
+        if (planetCountOnScreen < planetDesired)
+        {
+            CreatePlanet(new Vector3(0f, 0f, 0f));
+            planetCountOnScreen++;
+        }
    }
 
     void CreatePlanet(Vector3 pos)
@@ -64,6 +72,10 @@ public class GameManager : MonoBehaviour
         newPlanet.transform.position = pos;
         Debug.Log(Pmanager);
         Pmanager.addParticle2D(newPlanet);
+        newPlanet.GetComponent<Planet>().SetVariables(newPlanet);
+        ForceGenerator2D pointForce = Fmanager.NewPointForceGenerator(pos, 10f);
+        Fmanager.addForceGenerator(pointForce);
+        newPlanet.GetComponent<Planet>().forceGen = pointForce;
         //ForceGenerator2D bouyancyForce = Fmanager.NewBouyancyForceGenerator(newTarget, -(waterSprite.transform.localScale.y) / 2, 75.0f, (waterSprite.transform.localScale.y) / 2, 5.0f);
         //Fmanager.addForceGenerator(bouyancyForce);
         //newTarget.GetComponent<TargetBehavior>().forceGen = bouyancyForce;
