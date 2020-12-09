@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 3827077825183973050}
   - component: {fileID: 3827077825183973049}
   - component: {fileID: 3827077825183973048}
+  - component: {fileID: -3108211175261179748}
+  - component: {fileID: -8500667775455741945}
   - component: {fileID: 3827077825183973051}
-  - component: {fileID: 3827077825183973046}
   m_Layer: 0
   m_Name: CenterPlanet
   m_TagString: Untagged
@@ -83,6 +84,40 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-3108211175261179748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827077825183973053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491c04e07db427240bc79ebf37117087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mass: 0
+  Velocity: {x: 0, y: 0, z: 0}
+  Acceleration: {x: 0, y: 0, z: 0}
+  AccumulatedForces: {x: 0, y: 0, z: 0}
+  DampingConstant: 0
+  ShouldIgnoreForces: 1
+  inverseMass: 0
+  integrator: {fileID: 0}
+  speed: 0
+--- !u!114 &-8500667775455741945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827077825183973053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96845875d01925c409084c6baf041c23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceGen: {fileID: 0}
 --- !u!135 &3827077825183973051
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -96,21 +131,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3827077825183973046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3827077825183973053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 190d17b824fcfb849b1ac6e89faa836d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanceVal: 0
-  distSpeed: 0
-  angleVal: 0
-  angleSpeed: 0
-  gravitationalConstant: 0
-  forceGen: {fileID: 0}

@@ -500,8 +500,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Fmanager: {fileID: 1298423037}
   Pmanager: {fileID: 1841875004}
-  mLink: {fileID: 0}
-  pContact: {fileID: 0}
   planetPrefab: {fileID: 2539872500611936759, guid: d2967bec438a9df4c9597a54ace00e0d, type: 3}
   sunPrefab: {fileID: 3827077825183973053, guid: 95165dd6d706c5c4eaa3e5a5051e0a02, type: 3}
   planetCountOnScreen: 0
@@ -727,6 +725,10 @@ PrefabInstance:
     - target: {fileID: 3827077825183973053, guid: 95165dd6d706c5c4eaa3e5a5051e0a02, type: 3}
       propertyPath: m_Name
       value: CenterPlanet
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827077825183973053, guid: 95165dd6d706c5c4eaa3e5a5051e0a02, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95165dd6d706c5c4eaa3e5a5051e0a02, type: 3}
