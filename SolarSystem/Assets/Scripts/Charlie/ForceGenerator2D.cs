@@ -23,6 +23,34 @@ public class ForceGenerator2D : MonoBehaviour
    }
 }
 
+public class OrbitForceGenerator : ForceGenerator2D
+{
+   private float mGConstant;
+   private float mPlanetMass1;
+   private float mPlanetMass2;
+   private Vector3 mCenterOfOrbit;
+
+   public void Constructor(Vector3 centerOfOrbit, float gConstant, float planetMass1, float planetMass2)
+   {
+      mGConstant = gConstant;
+      mPlanetMass1 = planetMass1;
+      mPlanetMass2 = planetMass2;
+      mCenterOfOrbit = centerOfOrbit;
+   }
+
+   public override void UpdateForce(GameObject obj)
+   {
+      Vector3 diff = mCenterOfOrbit - gameObject.transform.position;
+      diff.Normalize();
+
+      float dist = Vector3.Distance(mCenterOfOrbit, obj.transform.position);
+      float distSQ = Mathf.Sqrt(dist);
+
+      Vector3 force = mGConstant * mPlanetMass1 * mPlanetMass2 / distSQ;
+         addForce(obj, force);
+   }
+}
+
 public class PointForceGenerator : ForceGenerator2D
 {
    private Vector3 mPoint;

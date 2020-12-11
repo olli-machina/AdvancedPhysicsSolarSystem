@@ -54,8 +54,8 @@ public class ParticleManager : MonoBehaviour
                {
                   deadParticle2D.Add(particle);
                   deadParticle2D.Add(particle2);
-                  int deleteIndex1 = listOfParticle2D.IndexOf(particle);
-                  int deleteIndex2 = listOfParticle2D.IndexOf(particle2);
+                  //int deleteIndex1 = listOfParticle2D.IndexOf(particle);
+                  //int deleteIndex2 = listOfParticle2D.IndexOf(particle2);
                }
             }
          }
