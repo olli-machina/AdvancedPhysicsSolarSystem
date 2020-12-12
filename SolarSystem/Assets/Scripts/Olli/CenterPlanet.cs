@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CenterPlanet : MonoBehaviour
 {
-    public ForceGenerator2D forceGen;
+    //public ForceGenerator2D forceGen;
+    public float sunGravitationalConstant = 50f;
+
     // Start is called before the first frame update
     void Start()
     {
-        //forceGen = GetComponent<ForceGenerator2D>();
     }
 
     // Update is called once per frame

@@ -24,7 +24,6 @@ public class Planet : MonoBehaviour
     void Update()
     {
         float deg = (float)angleVal * Mathf.Rad2Deg;
-        Debug.Log("degrees: " + deg);
         if (angleVal >= 360)
             angleVal = 0;
     }
@@ -33,7 +32,7 @@ public class Planet : MonoBehaviour
     {
         Particle2D info = obj.GetComponent<Particle2D>();
         info.speed = 10f;
-        info.Acceleration = new Vector3(-2f, 0f, -2f);
+        info.Acceleration = new Vector3(-10f, 0f, -10f);
         info.Velocity = obj.transform.forward * info.speed;
         info.DampingConstant = 0.99f;
         info.Mass = 1.25f;

@@ -47,7 +47,7 @@ public class OrbitForceGenerator : ForceGenerator2D
       float distSQ = Mathf.Sqrt(dist);
 
       //double gravity = obj.GetComponent<Planet>().gravitationalConstant;
-      float force = mGConstant * ((mPlanetMass1 * mPlanetMass2)/distSQ);
+      float force = (mGConstant * (mPlanetMass1 * mPlanetMass2))/distSQ;
 
         addForce(obj, (diff * (force)) * Time.deltaTime);
         //Debug.Log(obj.name + " " + diff);
@@ -93,19 +93,36 @@ public class PointForceGenerator : ForceGenerator2D
 
 public class GravityForceGenerator : ForceGenerator2D
 {
-    Vector3 gravityDueToAcc;
+    Transform targetTransform;
+    GameObject sun;
+    Vector3 direction, forward, side, cross;
 
-    public void Constructor(Vector3 gravity)
+    public void Constructor(GameObject target, GameObject self)
     {
-        gravityDueToAcc = gravity;
+        forward = transform.forward;
+        targetTransform = target.transform;
+        direction = target.transform.position - transform.position;
+        side = Vector3.Cross(direction, forward);
+        sun = target;
+
     }
 
-    public override void UpdateForce(GameObject obj)
+    public override void UpdateForce(GameObject self)
     {
-        if (obj.GetComponent<Particle2D>().getMass() <= 0f)
-            return;
-        
-        addForce(obj, gravityDueToAcc * obj.GetComponent<Particle2D>().getMass());
+        targetTransform = self.transform;
+        direction = self.transform.position - transform.position;
+        transform.LookAt(direction.normalized);
+        Debug.Log(self);
+        addForce(self, -(direction.normalized * sun.GetComponent<CenterPlanet>().sunGravitationalConstant));
+
+        cross = Vector3.Cross(direction, side);
+        addForce(self, -(cross.normalized * sun.GetComponent<CenterPlanet>().sunGravitationalConstant));
+
+
+        //if (obj.GetComponent<Particle2D>().getMass() <= 0f)
+        //    return;
+
+        //addForce(obj, gravityDueToAcc * obj.GetComponent<Particle2D>().getMass());
     }
 }
 

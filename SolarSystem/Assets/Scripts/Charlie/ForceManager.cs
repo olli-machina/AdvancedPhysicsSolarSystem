@@ -21,7 +21,7 @@ public class ForceManager : MonoBehaviour
 
    void Start()
    {
-      NewPointForceGenerator(new Vector3(0, 0, 0), 1);
+      //NewPointForceGenerator(new Vector3(0, 0, 0), 1);
    }
 
    // Update is called once per frame
@@ -47,17 +47,17 @@ public class ForceManager : MonoBehaviour
       addForceGenerator(orbitForceGenerator);
       return newForceGenerator.GetComponent<ForceGenerator2D>();
    }
-    
-   // public ForceGenerator2D NewGravityForceGenerator(double sunMass, double planetMass, float magnitude)
-   //{
-   //   GameObject newForceGenerator = new GameObject("PointForceGenerator");
-   //   PointForceGenerator pointForceGenerator = newForceGenerator.AddComponent<PointForceGenerator>();
-   //   pointForceGenerator.Constructor(point, magnitude);
-   //   addForceGenerator(pointForceGenerator);
-   //   return newForceGenerator.GetComponent<ForceGenerator2D>();
-   //}
 
-   public void addForceGenerator(ForceGenerator2D forceGeneratorToAdd)
+    public ForceGenerator2D NewGravityForceGenerator(GameObject target, GameObject self)
+    {
+        GameObject newForceGenerator = new GameObject("GravityForceGenerator");
+        GravityForceGenerator gravityForceGenerator = newForceGenerator.AddComponent<GravityForceGenerator>();
+        gravityForceGenerator.Constructor(target, self);
+        addForceGenerator(gravityForceGenerator);
+        return newForceGenerator.GetComponent<ForceGenerator2D>();
+    }
+
+    public void addForceGenerator(ForceGenerator2D forceGeneratorToAdd)
    {
       listOfGenerators.Add(forceGeneratorToAdd);
    }

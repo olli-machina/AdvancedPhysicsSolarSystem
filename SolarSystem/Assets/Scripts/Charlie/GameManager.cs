@@ -44,9 +44,9 @@ public class GameManager : MonoBehaviour
         currentPlanet.GetComponent<Planet>().SetVariables(currentPlanet);
         Planet newPlanetData = currentPlanet.GetComponent<Planet>();
         Particle2D newPlanetParticle = currentPlanet.GetComponent<Particle2D>();
-        ForceGenerator2D orbitForce = Fmanager.NewOrbitForceGenerator(Vector3.zero, newPlanetData.gravitationalConstant, newPlanetParticle.Mass, sunMass);
-        Fmanager.addForceGenerator(orbitForce);
-        currentPlanet.GetComponent<Planet>().forceGen = orbitForce;
+        ForceGenerator2D gravityForce = Fmanager.NewGravityForceGenerator(GameObject.Find("Sun"), currentPlanet);
+        Fmanager.addForceGenerator(gravityForce);
+        currentPlanet.GetComponent<Planet>().forceGen = gravityForce;
     }
     void CreatePlanet(Vector3 pos)
     {
@@ -56,9 +56,9 @@ public class GameManager : MonoBehaviour
         newPlanet.GetComponent<Planet>().SetVariables(newPlanet);
         Planet newPlanetData = newPlanet.GetComponent<Planet>();
         Particle2D newPlanetParticle = newPlanet.GetComponent<Particle2D>();
-        ForceGenerator2D orbitForce = Fmanager.NewOrbitForceGenerator(Vector3.zero, newPlanetData.gravitationalConstant, newPlanetParticle.Mass, sunMass);
-        Fmanager.addForceGenerator(orbitForce);
-        newPlanet.GetComponent<Planet>().forceGen = orbitForce;
+        ForceGenerator2D gravityForce = Fmanager.NewGravityForceGenerator(GameObject.Find("Sun"), newPlanet);
+        Fmanager.addForceGenerator(gravityForce);
+        newPlanet.GetComponent<Planet>().forceGen = gravityForce;
     }
 
     void CreateCenterPlanet(Vector3 pos)
@@ -69,9 +69,9 @@ public class GameManager : MonoBehaviour
         newSun.transform.position = pos;
         Pmanager.addParticle2D(newSun);
         newSun.GetComponent<CenterPlanet>().SetVariables(newSun);
-        ForceGenerator2D pointForce = Fmanager.NewPointForceGenerator(pos, 1000f);
-        Fmanager.addForceGenerator(pointForce);
-        newSun.GetComponent<CenterPlanet>().forceGen = pointForce;
+        //ForceGenerator2D pointForce = Fmanager.NewPointForceGenerator(pos, 1000f);
+        //Fmanager.addForceGenerator(pointForce);
+        //newSun.GetComponent<CenterPlanet>().forceGen = pointForce;
     }
 
 
