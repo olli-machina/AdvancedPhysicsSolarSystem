@@ -101,7 +101,7 @@ MonoBehaviour:
   distSpeed: 0
   angleVal: 0
   angleSpeed: 1.990986
-  gravitationalConstant: 0
+  gravitationalConstant: 2
   forceGen: {fileID: 0}
 --- !u!114 &2539872500611936744
 MonoBehaviour:
@@ -123,7 +123,7 @@ MonoBehaviour:
   ShouldIgnoreForces: 0
   inverseMass: 0
   integrator: {fileID: 0}
-  speed: 0
+  speed: 2
 --- !u!114 &2539872500611936746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f9d6468b93caa4a92a5f0e50c0d92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sunMass: 0
+  sunMass: 10
 --- !u!135 &2539872500611936757
 SphereCollider:
   m_ObjectHideFlags: 0

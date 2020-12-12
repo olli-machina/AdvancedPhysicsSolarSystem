@@ -19,7 +19,9 @@ public class Integrator : MonoBehaviour
       public void integrator(GameObject obj)
       {
          particle = obj.GetComponent<Particle2D>();
-         obj.transform.position += (particle.Velocity * Time.deltaTime);
+        if(obj.name == "Earth?") 
+            //Debug.Log(obj.name + " "  + particle.Velocity);
+         obj.transform.position += new Vector3(((particle.Velocity.x/200f) * Time.deltaTime), 0f, ((particle.Velocity.z / 200f) * Time.deltaTime));
          Vector3 resultingAcc = particle.Acceleration;
 
          if (!particle.ShouldIgnoreForces)

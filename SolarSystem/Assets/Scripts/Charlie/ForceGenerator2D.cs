@@ -40,15 +40,21 @@ public class OrbitForceGenerator : ForceGenerator2D
 
    public override void UpdateForce(GameObject obj)
    {
-      Vector3 diff = mCenterOfOrbit - gameObject.transform.position;
+      Vector3 diff = mCenterOfOrbit - obj.transform.position;
       diff.Normalize();
 
       float dist = Vector3.Distance(mCenterOfOrbit, obj.transform.position);
       float distSQ = Mathf.Sqrt(dist);
 
-      Vector3 force = mGConstant * mPlanetMass1 * mPlanetMass2 / distSQ;
-         addForce(obj, force);
-   }
+      //double gravity = obj.GetComponent<Planet>().gravitationalConstant;
+      float force = mGConstant * ((mPlanetMass1 * mPlanetMass2)/distSQ);
+
+        addForce(obj, (diff * (force)) * Time.deltaTime);
+        //Debug.Log(obj.name + " " + diff);
+
+        //Vector3 force = mGConstant * mPlanetMass1 * mPlanetMass2 / distSQ;
+        // addForce(obj, force);
+    }
 }
 
 public class PointForceGenerator : ForceGenerator2D
@@ -83,6 +89,24 @@ public class PointForceGenerator : ForceGenerator2D
       }
    }
 
+}
+
+public class GravityForceGenerator : ForceGenerator2D
+{
+    Vector3 gravityDueToAcc;
+
+    public void Constructor(Vector3 gravity)
+    {
+        gravityDueToAcc = gravity;
+    }
+
+    public override void UpdateForce(GameObject obj)
+    {
+        if (obj.GetComponent<Particle2D>().getMass() <= 0f)
+            return;
+        
+        addForce(obj, gravityDueToAcc * obj.GetComponent<Particle2D>().getMass());
+    }
 }
 
 public class SpringForceGenerator : ForceGenerator2D

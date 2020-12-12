@@ -6,7 +6,7 @@ public class Planet : MonoBehaviour
 {
     public double distanceVal = 0.0, distSpeed = 0.0,
         angleVal = 0.0, angleSpeed = 0.0;
-    public double gravitationalConstant = 9.8;
+    public float gravitationalConstant = 20f;
 
     public ForceGenerator2D forceGen;
 
@@ -23,16 +23,25 @@ public class Planet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float deg = (float)angleVal * Mathf.Rad2Deg;
+        Debug.Log("degrees: " + deg);
+        if (angleVal >= 360)
+            angleVal = 0;
     }
 
     public void SetVariables(GameObject obj)
     {
         Particle2D info = obj.GetComponent<Particle2D>();
         info.speed = 10f;
-        info.Acceleration = new Vector3(0f, -20f, 0f);
+        info.Acceleration = new Vector3(-2f, 0f, -2f);
         info.Velocity = obj.transform.forward * info.speed;
         info.DampingConstant = 0.99f;
+        info.Mass = 1.25f;
+    }
+
+    public void CalcForce(Particle2D info)
+    {
+        //float force = gravitationalConstant * (info.Mass * ;
     }
 
 }

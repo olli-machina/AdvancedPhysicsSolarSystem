@@ -8,7 +8,7 @@ public class OrbitControl : MonoBehaviour
     public GameObject sun;
 
     public float orbitSpeed;
-    public float gravity;
+    //public float gravity;
 
     /*Formula Notes
     Orbital Eccentricity Calculations

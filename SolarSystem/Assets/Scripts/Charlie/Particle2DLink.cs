@@ -87,7 +87,7 @@ public class ParticleRod : Particle2DLink
       }
 
       penetration *= 0.001f;
-      Debug.Log(length + "Max: " + mLength);
+      //Debug.Log(length + "Max: " + mLength);
       mObj1.AddComponent<Particle2DContact>();
       Particle2DContact contact = mObj1.GetComponent<Particle2DContact>();
       contact.Constructor(mObj1, mObj2, restitution, penetration, normal, zeroVector, zeroVector);

@@ -39,6 +39,15 @@ public class ForceManager : MonoBehaviour
       return newForceGenerator.GetComponent<ForceGenerator2D>();
    }
     
+   public ForceGenerator2D NewOrbitForceGenerator(Vector3 centerOfOrbit, float gConstant, float planetMass1, float planetMass2)
+   {
+      GameObject newForceGenerator = new GameObject("OrbitForceGenerator");
+      OrbitForceGenerator orbitForceGenerator = newForceGenerator.AddComponent<OrbitForceGenerator>();
+      orbitForceGenerator.Constructor(centerOfOrbit, gConstant, planetMass1, planetMass2);
+      addForceGenerator(orbitForceGenerator);
+      return newForceGenerator.GetComponent<ForceGenerator2D>();
+   }
+    
    // public ForceGenerator2D NewGravityForceGenerator(double sunMass, double planetMass, float magnitude)
    //{
    //   GameObject newForceGenerator = new GameObject("PointForceGenerator");

@@ -9,16 +9,18 @@ public class GameManager : MonoBehaviour
    public ParticleManager Pmanager;
    //public Particle2DLink mLink;
    //public Particle2DContact pContact;
-   public GameObject planetPrefab, sunPrefab;
+   public GameObject planetPrefab, sunPrefab, currentPlanet;
    //bool isSun = false;
 
     public int planetCountOnScreen = 0, planetDesired = 1;
+    public float sunMass = 10f;
 
    // Start is called before the first frame update
    void Start()
    {
         CreateCenterPlanet(new Vector3(0f,0f,0f));
-
+        currentPlanet = GameObject.Find("Earth?");
+        ChangePlanet();
    }
 
    // Update is called once per frame
@@ -26,7 +28,7 @@ public class GameManager : MonoBehaviour
    {
         if (planetCountOnScreen < planetDesired)
         {
-            CreatePlanet(new Vector3(0f, 0f, 0f));
+            CreatePlanet(new Vector3(20f, 0f, 0f));
             planetCountOnScreen++;
         }
 
@@ -35,16 +37,28 @@ public class GameManager : MonoBehaviour
 
    }
 
+
+    void ChangePlanet()
+    {
+        Pmanager.addParticle2D(currentPlanet);
+        currentPlanet.GetComponent<Planet>().SetVariables(currentPlanet);
+        Planet newPlanetData = currentPlanet.GetComponent<Planet>();
+        Particle2D newPlanetParticle = currentPlanet.GetComponent<Particle2D>();
+        ForceGenerator2D orbitForce = Fmanager.NewOrbitForceGenerator(Vector3.zero, newPlanetData.gravitationalConstant, newPlanetParticle.Mass, sunMass);
+        Fmanager.addForceGenerator(orbitForce);
+        currentPlanet.GetComponent<Planet>().forceGen = orbitForce;
+    }
     void CreatePlanet(Vector3 pos)
     {
         GameObject newPlanet = Instantiate(planetPrefab);
         newPlanet.transform.position = pos;
-        Debug.Log(Pmanager);
         Pmanager.addParticle2D(newPlanet);
         newPlanet.GetComponent<Planet>().SetVariables(newPlanet);
-        ForceGenerator2D pointForce = Fmanager.NewPointForceGenerator(pos, 10f);
-        Fmanager.addForceGenerator(pointForce);
-        newPlanet.GetComponent<Planet>().forceGen = pointForce;
+        Planet newPlanetData = newPlanet.GetComponent<Planet>();
+        Particle2D newPlanetParticle = newPlanet.GetComponent<Particle2D>();
+        ForceGenerator2D orbitForce = Fmanager.NewOrbitForceGenerator(Vector3.zero, newPlanetData.gravitationalConstant, newPlanetParticle.Mass, sunMass);
+        Fmanager.addForceGenerator(orbitForce);
+        newPlanet.GetComponent<Planet>().forceGen = orbitForce;
     }
 
     void CreateCenterPlanet(Vector3 pos)
@@ -58,7 +72,6 @@ public class GameManager : MonoBehaviour
         ForceGenerator2D pointForce = Fmanager.NewPointForceGenerator(pos, 1000f);
         Fmanager.addForceGenerator(pointForce);
         newSun.GetComponent<CenterPlanet>().forceGen = pointForce;
-        Debug.Log(pointForce);
     }
 
 

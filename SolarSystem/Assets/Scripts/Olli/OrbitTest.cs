@@ -5,7 +5,7 @@ using UnityEngine;
 public class OrbitTest : MonoBehaviour
 {
     Planet currentOrbit;
-    public double sunMass;
+    public double sunMass = 10;
 
     // Start is called before the first frame update
     void Start()
