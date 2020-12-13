@@ -660,7 +660,7 @@ MonoBehaviour:
   Pmanager: {fileID: 1841875004}
   planetPrefab: {fileID: 2539872500611936759, guid: d2967bec438a9df4c9597a54ace00e0d, type: 3}
   sunPrefab: {fileID: 3827077825183973053, guid: 95165dd6d706c5c4eaa3e5a5051e0a02, type: 3}
-  currentPlanet: {fileID: 0}
+  currentPlanet: {fileID: 210421851}
   planetCountOnScreen: 0
   planetDesired: 1
   sunMass: 1000
