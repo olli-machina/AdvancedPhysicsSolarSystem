@@ -72,7 +72,7 @@ public class PointForceGenerator : ForceGenerator2D
    {
       Vector3 diff = mPoint - gameObject.transform.position;
 
-      float range = 10;
+      float range = 1000;
       float rangeSQ = range * range;
 
       float dist = Vector3.Distance(mPoint, obj.transform.position);
@@ -111,8 +111,9 @@ public class GravityForceGenerator : ForceGenerator2D
     {
         targetTransform = self.transform;
         direction = self.transform.position - transform.position;
+        Debug.Log(self.name + " " + direction);
         transform.LookAt(direction.normalized);
-        Debug.Log(self);
+        //Debug.Log(self);
         addForce(self, -(direction.normalized * sun.GetComponent<CenterPlanet>().sunGravitationalConstant));
 
         cross = Vector3.Cross(direction, side);

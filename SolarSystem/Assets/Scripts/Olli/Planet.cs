@@ -6,7 +6,7 @@ public class Planet : MonoBehaviour
 {
     public double distanceVal = 0.0, distSpeed = 0.0,
         angleVal = 0.0, angleSpeed = 0.0;
-    public float gravitationalConstant = 20f;
+    public float gravitationalConstant = 20f, mass = 0f;
 
     public ForceGenerator2D forceGen;
 
@@ -38,7 +38,7 @@ public class Planet : MonoBehaviour
         info.Mass = 1.25f;
     }
 
-    public void CalcForce(Particle2D info)
+    public void CalcForce(Particle2D info) 
     {
         //float force = gravitationalConstant * (info.Mass * ;
     }

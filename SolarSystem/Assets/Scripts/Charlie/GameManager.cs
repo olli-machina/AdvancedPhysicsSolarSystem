@@ -44,9 +44,9 @@ public class GameManager : MonoBehaviour
         currentPlanet.GetComponent<Planet>().SetVariables(currentPlanet);
         Planet newPlanetData = currentPlanet.GetComponent<Planet>();
         Particle2D newPlanetParticle = currentPlanet.GetComponent<Particle2D>();
-        ForceGenerator2D gravityForce = Fmanager.NewGravityForceGenerator(GameObject.Find("Sun"), currentPlanet);
-        Fmanager.addForceGenerator(gravityForce);
-        currentPlanet.GetComponent<Planet>().forceGen = gravityForce;
+        //ForceGenerator2D gravityForce = Fmanager.NewGravityForceGenerator(GameObject.Find("Sun"), currentPlanet);
+        //Fmanager.addForceGenerator(gravityForce);
+        //currentPlanet.GetComponent<Planet>().forceGen = gravityForce;
     }
     void CreatePlanet(Vector3 pos)
     {
@@ -56,9 +56,9 @@ public class GameManager : MonoBehaviour
         newPlanet.GetComponent<Planet>().SetVariables(newPlanet);
         Planet newPlanetData = newPlanet.GetComponent<Planet>();
         Particle2D newPlanetParticle = newPlanet.GetComponent<Particle2D>();
-        ForceGenerator2D gravityForce = Fmanager.NewGravityForceGenerator(GameObject.Find("Sun"), newPlanet);
-        Fmanager.addForceGenerator(gravityForce);
-        newPlanet.GetComponent<Planet>().forceGen = gravityForce;
+        //ForceGenerator2D gravityForce = Fmanager.NewGravityForceGenerator(GameObject.Find("Sun"), newPlanet);
+        //Fmanager.addForceGenerator(gravityForce);
+        //newPlanet.GetComponent<Planet>().forceGen = gravityForce;
     }
 
     void CreateCenterPlanet(Vector3 pos)
@@ -69,55 +69,11 @@ public class GameManager : MonoBehaviour
         newSun.transform.position = pos;
         Pmanager.addParticle2D(newSun);
         newSun.GetComponent<CenterPlanet>().SetVariables(newSun);
-        //ForceGenerator2D pointForce = Fmanager.NewPointForceGenerator(pos, 1000f);
-        //Fmanager.addForceGenerator(pointForce);
-        //newSun.GetComponent<CenterPlanet>().forceGen = pointForce;
+        ForceGenerator2D pointForce = Fmanager.NewPointForceGenerator(pos, 1000f);
+        Fmanager.addForceGenerator(pointForce);
+        newSun.GetComponent<CenterPlanet>().forceGen = pointForce;
     }
 
 
-    //void CreateTarget(Vector3 pos)
-    //{
-    //   GameObject newTarget = Instantiate(target);
-    //   newTarget.transform.position = pos;
-    //   Debug.Log(Pmanager);
-    //   Pmanager.addParticle2D(newTarget);
-    //   newTarget.GetComponent<TargetBehavior>().SetVariables(newTarget);
-    //   ForceGenerator2D bouyancyForce = Fmanager.NewBouyancyForceGenerator(newTarget, -(waterSprite.transform.localScale.y) / 2, 75.0f, (waterSprite.transform.localScale.y) / 2, 5.0f);
-    //   Fmanager.addForceGenerator(bouyancyForce);
-    //   newTarget.GetComponent<TargetBehavior>().forceGen = bouyancyForce;
-    //   isTarget = true;
-    //}
-
-    //void SpringProjectile()
-    //{
-    //   GameObject newBullet1 = Instantiate(springPrefab);
-    //   GameObject newBullet2 = Instantiate(springPrefab);
-    //   newBullet1.GetComponent<BulletBehavior>().SetVariables(newBullet1, gun);
-    //   newBullet2.GetComponent<BulletBehavior>().SetVariables(newBullet2, gun);
-    //   newBullet1.transform.position = gun.transform.position;
-    //   newBullet2.transform.position = gun.transform.position;
-
-    //   newBullet1.GetComponent<BulletBehavior>().isForceGen = true;
-
-    //   ForceGenerator2D springForce = Fmanager.NewSpringForceGenerator(newBullet1, newBullet2, 1.0f, 10.0f);
-    //   Fmanager.addForceGenerator(springForce);
-
-    //   newBullet1.GetComponent<BulletBehavior>().forceGen = springForce;
-    //}
-
-    //void RodProjectile()
-    //{
-    //   GameObject newBullet1 = Instantiate(rodPrefab);
-    //   GameObject newBullet2 = Instantiate(rodPrefab);
-    //   newBullet1.GetComponent<BulletBehavior>().SetVariables(newBullet1, gun);
-    //   newBullet2.GetComponent<BulletBehavior>().SetVariables(newBullet2, gun);
-    //   newBullet1.transform.position = new Vector3(gun.transform.position.x, gun.transform.position.y + 10.0f, 0.0f);
-    //   newBullet2.transform.position = gun.transform.position;
-
-    //   newBullet1.GetComponent<BulletBehavior>().isParticleLink = true;
-
-    //   Particle2DLink pLink = mLink.NewLink(newBullet1, newBullet2, 10.0f);
-    //   //pContact.resolveContacts(mLink., Time.deltaTime);
-    //   newBullet1.GetComponent<BulletBehavior>().particleLink = pLink;
-    //}
+   
 }
