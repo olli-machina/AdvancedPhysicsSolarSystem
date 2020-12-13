@@ -111,7 +111,6 @@ public class GravityForceGenerator : ForceGenerator2D
     {
         targetTransform = self.transform;
         direction = self.transform.position - transform.position;
-        Debug.Log(self.name + " " + direction);
         transform.LookAt(direction.normalized);
         //Debug.Log(self);
         addForce(self, -(direction.normalized * sun.GetComponent<CenterPlanet>().sunGravitationalConstant));
